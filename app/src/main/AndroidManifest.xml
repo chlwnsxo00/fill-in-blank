@@ -14,13 +14,27 @@
         android:theme="@style/Theme.Blank"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".PlayActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TextEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".InnerIndexActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainIndexActivity"
+            android:exported="false"
+            android:label="목록">
         </activity>
     </application>
 
