@@ -1,24 +1,26 @@
 package com.example.blank
 
+import Items
 import android.app.AlertDialog
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
-import android.view.ContextMenu
 import android.view.Menu
-import android.view.View
+import android.view.MenuItem
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.persona.data.itemAdapter
 
 class MainIndexActivity : AppCompatActivity() {
-
+    private val itemList = ArrayList<Items>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.setTitle("목록")
         setContentView(R.layout.activity_main_index)
-
-
     }
-
     // 이 액티비티와 top_menu_main_index를 연결
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.top_menu_main_indxe, menu)
@@ -26,22 +28,28 @@ class MainIndexActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    // 상단 목록의 + 클릭시 발생하는 이벤트 메소드
-    fun addList(){
-        val builder = AlertDialog.Builder(this)
-        val input = EditText(this)
-        builder.setView(input)
-
-        builder.setTitle("제목")
-        builder.setPositiveButton("확인") { dialogInterface, i ->
-            val userInput = input.text.toString()
-
-            // 입력된 문자열 처리
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.topAddListItem -> {
+                val input = EditText(this)
+                AlertDialog.Builder(this)
+                    .setTitle("새로운 목록 추가하기")
+                    .setMessage("새로운 목록의 이름을 적어주세요")
+                    .setView(input)
+                    .setPositiveButton("생성하기") { _, _ ->
+                        itemList.add(Items(input.text.toString()))
+                        runOnUiThread(kotlinx.coroutines.Runnable {
+                            findViewById<RecyclerView>(R.id.rv_item).layoutManager =
+                                LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+                            findViewById<RecyclerView>(R.id.rv_item).adapter = itemAdapter(itemList)
+                        })
+                    }
+                    .setNegativeButton("취소하기") { _, _ -> }
+                    .create()
+                    .show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
-        builder.setNegativeButton("취소") { dialogInterface, i ->
-            // 취소 버튼 클릭 아무런 작동 X
-        }
-        val dialog = builder.create()
-        dialog.show()
     }
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="목록">
     <item
-        android:id="@+id/topNavigationSearchItem"
+        android:id="@+id/topAddListItem"
         android:icon="@drawable/top_menu_add"
-        android:onClick="addList"
-        android:title="검색"
+        android:title="addList"
         app:showAsAction="ifRoom" />
 
 </menu>

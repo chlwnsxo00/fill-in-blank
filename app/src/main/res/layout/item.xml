@@ -19,6 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/itemTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -30,12 +31,12 @@
             app:layout_constraintStart_toStartOf="@+id/constraintLayout"
             app:layout_constraintTop_toTopOf="@id/constraintLayout" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_start_Inner_Index"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:background="drawable/white_rounded_rectangle"
+            android:background="@drawable/white_rounded_rectangle"
             android:text="지문 NN개>"
             android:textColor="@color/menuColor"
             android:textSize="15dp"
@@ -55,12 +56,12 @@
             app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_remove_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:background="drawable/white_rounded_rectangle"
+            android:background="@drawable/white_rounded_rectangle"
             android:text="삭제"
             android:textColor="@color/red"
             android:textSize="15dp"
