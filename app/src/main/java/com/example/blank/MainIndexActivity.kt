@@ -7,9 +7,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.persona.data.itemAdapter
@@ -32,12 +34,16 @@ class MainIndexActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.topAddListItem -> {
                 val input = EditText(this)
+                val btn_start_Inner_Index = AppCompatButton(this)
+                val btn_start_Play = Button(this)
+                val btn_remove_list = AppCompatButton(this)
+
                 AlertDialog.Builder(this)
                     .setTitle("새로운 목록 추가하기")
                     .setMessage("새로운 목록의 이름을 적어주세요")
                     .setView(input)
                     .setPositiveButton("생성하기") { _, _ ->
-                        itemList.add(Items(input.text.toString()))
+                        itemList.add(Items(input.text.toString(),btn_start_Inner_Index,btn_start_Play,btn_remove_list))
                         runOnUiThread(kotlinx.coroutines.Runnable {
                             findViewById<RecyclerView>(R.id.rv_item).layoutManager =
                                 LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
