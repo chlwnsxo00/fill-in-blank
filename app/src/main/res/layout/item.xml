@@ -31,13 +31,13 @@
             app:layout_constraintStart_toStartOf="@+id/constraintLayout"
             app:layout_constraintTop_toTopOf="@id/constraintLayout" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_start_Inner_Index"
+        <TextView
+            android:id="@+id/text_start_Inner_Index"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/white_rounded_rectangle"
-            android:text="지문 NN개>"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="15dp"
+            android:text="지문 0개>"
             android:textColor="@color/menuColor"
             android:textSize="15dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -56,12 +56,13 @@
             app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_remove_list"
+        <TextView
+            android:id="@+id/text_remove_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/white_rounded_rectangle"
+
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="15dp"
             android:text="삭제"
             android:textColor="@color/red"
             android:textSize="15dp"

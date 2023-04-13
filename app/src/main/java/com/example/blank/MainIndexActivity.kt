@@ -1,23 +1,18 @@
 package com.example.blank
 
-import Items
+import MainIndexItemAdapter
+import MainIndexItems
 import android.app.AlertDialog
-import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.persona.data.itemAdapter
 
 class MainIndexActivity : AppCompatActivity() {
-    private val itemList = ArrayList<Items>()
+    private val itemList = ArrayList<MainIndexItems>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.setTitle("목록")
@@ -34,20 +29,21 @@ class MainIndexActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.topAddListItem -> {
                 val input = EditText(this)
-                val btn_start_Inner_Index = AppCompatButton(this)
-                val btn_start_Play = Button(this)
-                val btn_remove_list = AppCompatButton(this)
+
+                val text_start_Inner_Index = "지문 0개 >"
+                // TODO 이 부분 나중에 지문 개수를 받아서 지문 개수 출력하는 걸로 수정해야함
+
 
                 AlertDialog.Builder(this)
                     .setTitle("새로운 목록 추가하기")
                     .setMessage("새로운 목록의 이름을 적어주세요")
                     .setView(input)
                     .setPositiveButton("생성하기") { _, _ ->
-                        itemList.add(Items(input.text.toString(),btn_start_Inner_Index,btn_start_Play,btn_remove_list))
+                        itemList.add(MainIndexItems(input.text.toString(),text_start_Inner_Index))
                         runOnUiThread(kotlinx.coroutines.Runnable {
                             findViewById<RecyclerView>(R.id.rv_item).layoutManager =
                                 LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-                            findViewById<RecyclerView>(R.id.rv_item).adapter = itemAdapter(itemList)
+                            findViewById<RecyclerView>(R.id.rv_item).adapter = MainIndexItemAdapter(itemList)
                         })
                     }
                     .setNegativeButton("취소하기") { _, _ -> }
