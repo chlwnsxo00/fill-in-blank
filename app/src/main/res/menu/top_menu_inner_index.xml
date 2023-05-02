@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="목록">
     <item
-        android:id="@+id/save"
-        android:icon="@drawable/white_save"
+        android:id="@+id/takePhoto"
+        android:icon="@drawable/white_camera"
         android:title="addList"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/unsave"
-        android:icon="@drawable/white_unsave"
+        android:id="@+id/openGallery"
+        android:icon="@drawable/white_gallery"
         android:title="addList"
         app:showAsAction="ifRoom" />
 
