@@ -11,7 +11,7 @@ class TextEditActivity : AppCompatActivity() {
         setContentView(R.layout.activity_text_edit)
     }
     override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
-        menuInflater.inflate(R.menu.top_menu_text_edit, menu)
+        menuInflater.inflate(R.menu.top_menu_play_index, menu)
         //R은 res 폴더의 약자. res폴더 안에 있는 context_menu_main.xml 파일과 연결시킨다.
     }
 }

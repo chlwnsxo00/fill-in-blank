@@ -1,8 +1,5 @@
 package com.example.blank
 
-import MainIndexItemAdapter
-import MainIndexItems
-import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -12,16 +9,11 @@ import android.provider.MediaStore
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import java.io.File
 import java.io.IOException
 
@@ -40,7 +32,9 @@ class InnerIndexActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inner_index)
+
     }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.top_menu_main_indxe, menu)
         //R은 res 폴더의 약자. res폴더 안에 있는 context_menu_main.xml 파일과 연결시킨다.
@@ -82,7 +76,7 @@ class InnerIndexActivity : AppCompatActivity() {
             .setTitle("권한이 필요합니다.")
             .setMessage("사진을 촬영하기 위해 권한이 필요합니다.")
             .setPositiveButton("동의하기") { _, _ ->
-                requestPermissions(arrayOf(android.Manifest.permission.CAMERA), 1000)
+                requestPermissions(arrayOf(android.Manifest.permission.CAMERA), REQUEST_TAKE_PHOTO)
             }
             .setNegativeButton("취소하기") { _, _ -> }
             .create()
@@ -107,10 +101,9 @@ class InnerIndexActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             REQUEST_TAKE_PHOTO -> if (resultCode == RESULT_OK) {
-                val intent = Intent()
-                intent.data = Uri.fromFile(mFilePhotoTaken)
-                setResult(RESULT_OK, intent)
-                finish()
+                val intent = Intent(this, PlayOCRActivity::class.java)
+                intent.putExtra("ImageUri", Uri.fromFile(mFilePhotoTaken))
+                startActivity(intent)
             }
             REQUEST_SELECT_IMAGE_IN_ALBUM -> if (resultCode == RESULT_OK) {
                 val imageUri: Uri?
@@ -119,16 +112,14 @@ class InnerIndexActivity : AppCompatActivity() {
                 } else {
                     data.data
                 }
-                val intent = Intent()
-                intent.data = imageUri
-                setResult(RESULT_OK, intent)
-                finish()
+                val intent = Intent(this, PlayOCRActivity::class.java)
+                intent.putExtra("ImageUri", imageUri)
+                startActivity(intent)
             }
-            else -> {}
+            else -> { Toast.makeText(this, "사진을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show()}
         }
     }
 
-    // When the button of "Take a Photo with Camera" is pressed.
     private fun takePhoto() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         if (intent.resolveActivity(packageManager) != null) {
@@ -160,10 +151,9 @@ class InnerIndexActivity : AppCompatActivity() {
         }
     }
 
-    // When the button of "Select a Photo in Album" is pressed.
     private fun selectImageInAlbum() {
         val intent = Intent(Intent.ACTION_GET_CONTENT)
-        intent.type = "mFilePhotoTaken/*"
+        intent.type = "image/*"
         if (intent.resolveActivity(packageManager) != null) {
             startActivityForResult(intent, REQUEST_SELECT_IMAGE_IN_ALBUM)
         }

@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Blank"
         tools:targetApi="31">
         <activity
-            android:name=".PlayActivity"
+            android:name=".PlayOCRActivity"
             android:exported="false" />
         <activity
             android:name=".TextEditActivity"

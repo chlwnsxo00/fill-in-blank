@@ -1,4 +1,3 @@
-import MainIndexItems
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +6,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.blank.InnerIndexActivity
-import com.example.blank.PlayActivity
+import com.example.blank.PlayOCRActivity
 import com.example.blank.R
 
 class MainIndexItemAdapter(val itemlist:ArrayList<MainIndexItems>) : RecyclerView.Adapter<MainIndexItemAdapter.CustomViewHolder>()
@@ -27,7 +26,7 @@ class MainIndexItemAdapter(val itemlist:ArrayList<MainIndexItems>) : RecyclerVie
         }
         holder.btn_start_Play.setOnClickListener {
             // 버튼 클릭 이벤트 처리
-            val intent = Intent(holder.itemView.context, PlayActivity::class.java)
+            val intent = Intent(holder.itemView.context, PlayOCRActivity::class.java)
             holder.itemView.context.startActivity(intent)
         }
         holder.text_remove_list.setOnClickListener {
