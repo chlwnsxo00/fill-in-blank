@@ -12,7 +12,7 @@ import com.example.blank.R
 class MainIndexItemAdapter(val itemlist:ArrayList<MainIndexItems>) : RecyclerView.Adapter<MainIndexItemAdapter.CustomViewHolder>()
 {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item , parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.main_index_item , parent, false)
 
         return CustomViewHolder(view)
     }

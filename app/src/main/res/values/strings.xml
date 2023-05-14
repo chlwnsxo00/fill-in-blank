@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Blank</string>
+    <string name="subscription_key">2f972e2d1740429abb7db65e2d7b2070</string>
+    <string name="subscription_apiroot">https://azure-ocr-fill-in-blank.cognitiveservices.azure.com/</string>
+
 </resources>

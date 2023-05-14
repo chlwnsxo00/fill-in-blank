@@ -3,13 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="목록">
     <item
-        android:id="@+id/takePhoto"
-        android:icon="@drawable/white_camera"
-        android:title="addList"
-        app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/openGallery"
-        android:icon="@drawable/white_gallery"
+        android:id="@+id/addProblem"
+        android:icon="@drawable/top_menu_add"
         android:title="addList"
         app:showAsAction="ifRoom" />
 

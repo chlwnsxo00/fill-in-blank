@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/OCRtext"
-        android:layout_width="parent_content"
-        android:layout_height="parent_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_margin="20dp"
         android:text="OCR Text"
         android:textColor="@color/black"
@@ -33,7 +33,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/goBack"
+        app:layout_constraintEnd_toStartOf="@+id/retry"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_margin="20dp"
         android:text="문제 만들기"
@@ -42,7 +42,7 @@
         android:background="@drawable/blue_rounded_rectangle"
         />
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/goBack"
+        android:id="@+id/retry"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@+id/makeProblem"
