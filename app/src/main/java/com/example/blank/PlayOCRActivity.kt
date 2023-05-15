@@ -3,11 +3,9 @@ package com.example.blank
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.provider.MediaStore.ACTION_IMAGE_CAPTURE
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
@@ -18,7 +16,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.codingwithmehdi.android.cloud.ocr.TextRecognition
+import com.example.ocr.TextRecognition
 import java.io.File
 
 class PlayOCRActivity : AppCompatActivity() {
@@ -28,8 +26,7 @@ class PlayOCRActivity : AppCompatActivity() {
                 try {
                     val uri: Uri = result.data?.data!!
                     val file = File(getRealPathFromURI(uri))
-
-                    val image = findViewById<ImageView>(R.id.imageView)
+                    val image = findViewById<ImageView>(R.id.selectedImage)
                     image.setImageURI(uri)
                     TextRecognition.compressFile(this, file) {
                         TextRecognition.fromFile(it, object : TextRecognition.Callback {
@@ -42,7 +39,6 @@ class PlayOCRActivity : AppCompatActivity() {
                                 val contentLabel = findViewById<TextView>(R.id.OCRtext)
                                 contentLabel.text = e.toString()
                             }
-
                         })
                     }
                 } catch (e: Exception) {
@@ -69,12 +65,12 @@ class PlayOCRActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.take_photo -> {
                 // 사진찍기
-                when{
+                when {
                     ContextCompat.checkSelfPermission(
                         this,
                         android.Manifest.permission.CAMERA
-                    ) == PackageManager.PERMISSION_GRANTED ->{
-                        Toast.makeText(this,"권한 획득", Toast.LENGTH_SHORT).show()
+                    ) == PackageManager.PERMISSION_GRANTED -> {
+                        Toast.makeText(this, "권한 획득", Toast.LENGTH_SHORT).show()
                         Intent().apply {
                             type = "image/*"
                             action = MediaStore.ACTION_IMAGE_CAPTURE
@@ -82,13 +78,17 @@ class PlayOCRActivity : AppCompatActivity() {
                             pickImageIntent.launch(it)
                         }
                     }
-                    shouldShowRequestPermissionRationale(android.Manifest.permission.CAMERA) ->{
-                        Toast.makeText(this,"권한 거부", Toast.LENGTH_SHORT).show()
+                    shouldShowRequestPermissionRationale(android.Manifest.permission.CAMERA) -> {
+                        Toast.makeText(this, "권한 거부", Toast.LENGTH_SHORT).show()
                         showPermissionContextPopup()
                     }
                     else -> {
-                        Toast.makeText(this,"권한요청", Toast.LENGTH_SHORT).show()
-                        ActivityCompat.requestPermissions(this,arrayOf(android.Manifest.permission.CAMERA), 1000)
+                        Toast.makeText(this, "권한요청", Toast.LENGTH_SHORT).show()
+                        ActivityCompat.requestPermissions(
+                            this,
+                            arrayOf(android.Manifest.permission.CAMERA),
+                            1000
+                        )
                     }
                 }
                 true
@@ -119,33 +119,28 @@ class PlayOCRActivity : AppCompatActivity() {
             .show()
     }
 
-    private fun getRealPathFromURI(contentUri: Uri?): String? {
-        var cursor: Cursor? = null
-        try {
-            cursor = contentResolver.query(contentUri!!, null, null, null, null)
+    private fun getRealPathFromURI(contentUri: Uri?): String {
+        var cursor = contentResolver.query(contentUri!!, null, null, null, null)
+        if (cursor != null && cursor.moveToFirst()) {
+            var document = cursor.getString(0)
+            document = document.substring(document.lastIndexOf(":") + 1)
+            cursor.close()
+            cursor = contentResolver.query(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                null,
+                MediaStore.Images.Media._ID + " = ? ",
+                arrayOf(document),
+                null
+            )
             if (cursor != null && cursor.moveToFirst()) {
-                val document = cursor.getString(0)
-                val documentId = document.substring(document.lastIndexOf(":") + 1)
+                val columnIndex = cursor.getColumnIndex(MediaStore.Images.Media.DATA)
+                val path = if (columnIndex >= 0) cursor.getString(columnIndex) else ""
                 cursor.close()
-                cursor = contentResolver.query(
-                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                    null,
-                    MediaStore.Images.Media._ID + " = ? ",
-                    arrayOf(documentId),
-                    null
-                )
-                if (cursor != null && cursor.moveToFirst()) {
-                    val path = cursor.getString(cursor.getColumnIndexOrThrow("_data"))
-                    cursor.close()
-                    return path
-                }
+                return path
             }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        } finally {
-            cursor?.close()
         }
-        return null
+        return ""
     }
+
 
 }

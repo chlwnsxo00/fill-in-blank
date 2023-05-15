@@ -1,33 +1,10 @@
 package com.example.blank
 
-import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-import android.Manifest.permission_group.CAMERA
-import android.app.Activity
-import android.content.ContentValues
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.database.Cursor
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.os.Environment
-import android.provider.MediaStore
-import android.util.Log
-import android.util.Log.d
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
-import com.codingwithmehdi.android.cloud.ocr.TextRecognition
-import java.io.File
-import java.io.IOException
-import java.util.logging.Logger
 
 
 class InnerIndexActivity : AppCompatActivity() {
