@@ -20,6 +20,7 @@ import com.example.ocr.TextRecognition
 import java.io.File
 
 class PlayOCRActivity : AppCompatActivity() {
+
     private var pickImageIntent =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
@@ -28,6 +29,7 @@ class PlayOCRActivity : AppCompatActivity() {
                     val file = File(getRealPathFromURI(uri))
                     val image = findViewById<ImageView>(R.id.selectedImage)
                     image.setImageURI(uri)
+                    image.scaleType = ImageView.ScaleType.CENTER_CROP
                     TextRecognition.compressFile(this, file) {
                         TextRecognition.fromFile(it, object : TextRecognition.Callback {
                             override fun success(response: String) {
@@ -48,10 +50,13 @@ class PlayOCRActivity : AppCompatActivity() {
             }
         }
 
+    private val apiKey : String = "K86472781588957"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_play_ocr)
 
+        TextRecognition.initialize(apiKey)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

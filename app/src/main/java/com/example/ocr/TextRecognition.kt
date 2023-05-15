@@ -119,9 +119,14 @@ object TextRecognition {
 
     fun compressFile(context: Context, file: File, callback: (file: File) -> Unit) {
         ioScope.launch {
-            Compressor.compress(context, file, Dispatchers.IO).let {
+            try {
+                val compressedFile = Compressor.compress(context, file)
                 mainScope.launch {
-                    callback.invoke(it)
+                    callback.invoke(compressedFile)
+                }
+            } catch (e: IOException) {
+                mainScope.launch {
+                    callback.invoke(file)
                 }
             }
         }
