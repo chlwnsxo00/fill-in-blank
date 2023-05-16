@@ -6,7 +6,9 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.blank.InnerIndexActivity
+import com.example.blank.MainIndexActivity
 import com.example.blank.PlayOCRActivity
+import com.example.blank.TextHighlightActivity
 import com.example.blank.R
 
 class MainIndexItemAdapter(val itemlist:ArrayList<MainIndexItems>) : RecyclerView.Adapter<MainIndexItemAdapter.CustomViewHolder>()
@@ -29,6 +31,12 @@ class MainIndexItemAdapter(val itemlist:ArrayList<MainIndexItems>) : RecyclerVie
             val intent = Intent(holder.itemView.context, PlayOCRActivity::class.java)
             holder.itemView.context.startActivity(intent)
         }
+//        holder.btn_save_Blank.setOnClickListener {
+//            // 버튼 클릭 이벤트 처리
+//            val intent = Intent(holder.itemView.context, MainIndexActivity::class.java)
+//            holder.itemView.context.startActivity(intent)
+//        }
+
         holder.text_remove_list.setOnClickListener {
             // 버튼 클릭 이벤트 처리
             itemlist.removeAt(position)
@@ -44,6 +52,7 @@ class MainIndexItemAdapter(val itemlist:ArrayList<MainIndexItems>) : RecyclerVie
         val itemTitle = itemView.findViewById<TextView>(R.id.itemTitle)
         val text_start_Inner_Index = itemView.findViewById<TextView>(R.id.text_start_Inner_Index)
         val btn_start_Play = itemView.findViewById<Button>(R.id.btn_start_Play)
+        val btn_save_Blank = itemView.findViewById<Button>(R.id.btn_save_Blank)
         val text_remove_list = itemView.findViewById<TextView>(R.id.text_remove_list)
     }
 }
