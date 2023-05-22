@@ -85,7 +85,7 @@ class PlayOCRActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_play_ocr)
 
-        TextRecognition.initialize("K86472781588957")
+        TextRecognition.initialize(BuildConfig.OCR_API_KEY)
         initMakeProblemButton()
     }
 
