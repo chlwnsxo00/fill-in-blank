@@ -2,12 +2,15 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.data.Test
-import com.example.data.db.dao.TestDao
+import com.example.data.db.dao.InnerIndexDao
+import com.example.data.db.dao.MainIndexDao
+import com.example.data.db.entity.InnerIndexEntity
+import com.example.data.db.entity.MainIndexEntity
 
-@Database(entities = [Test::class], version = 1)
+@Database(entities = [MainIndexEntity::class, InnerIndexEntity::class], version = 1)
 abstract class ApplicationDatabase : RoomDatabase() {
-    abstract fun testDao(): TestDao
+    abstract fun mainIndexDao(): MainIndexDao
+    abstract fun innerIndexDao(): InnerIndexDao
 
     companion object {
         @Volatile
