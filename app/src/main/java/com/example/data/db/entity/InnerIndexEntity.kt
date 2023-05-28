@@ -1,9 +1,12 @@
 package com.example.data.db.entity
 
+import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+@Entity
 data class InnerIndexEntity(
-    @PrimaryKey val id: Int,
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
     val itemTitle:String,
     val text_start_Inner_Index: String
 )

@@ -1,6 +1,5 @@
 package com.example.data.db.dao
 
-import MainIndexItems
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -16,8 +15,11 @@ interface MainIndexDao {
     suspend fun update(user: MainIndexEntity)
 
     @Query("DELETE FROM MainIndexEntity WHERE id = :id")
-    suspend fun delete(id: Int)
+    suspend fun delete(id: Long)
 
     @Query("SELECT * FROM MainIndexEntity")
-    suspend fun getAllIndexes(): List<MainIndexItems>
+    suspend fun getAllIndexes(): List<MainIndexEntity>
+
+    @Query("SELECT MAX(id) FROM MainIndexEntity")
+    suspend fun getMaxId(): Int?
 }
