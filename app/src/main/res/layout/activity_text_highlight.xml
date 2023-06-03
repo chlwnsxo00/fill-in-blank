@@ -37,13 +37,14 @@
 <!--    </ScrollView>-->
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="139dp"
-        android:layout_marginTop="211dp"
-        android:layout_marginEnd="214dp"
-        android:layout_marginBottom="433dp"
+        android:id="@+id/textView"
+        android:layout_width="369dp"
+        android:layout_height="339dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="308dp"
+        android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/btn_save_Blank"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

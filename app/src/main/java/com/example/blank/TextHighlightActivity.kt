@@ -11,7 +11,7 @@ import android.widget.TextView
 class TextHighlightActivity : AppCompatActivity() {
 
     private val textView: TextView by lazy {
-        findViewById(R.id.textView3)
+        findViewById(R.id.textView)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,8 +22,9 @@ class TextHighlightActivity : AppCompatActivity() {
         val intent = intent
         val ocrText = intent.getStringExtra("text")
 
-//        textView.text = ocrText
-        textView.text = "Hello World!"
+        textView.text = ocrText
+        println(ocrText)
+   //     textView.text = "Hello World!"
 
         textView.setOnLongClickListener {
             val start = textView.selectionStart
