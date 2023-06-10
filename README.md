@@ -2,6 +2,11 @@
 
 OCR을 통해 이미지에서 text를 추출하고 추출된 text에서 빈칸을 생성해 문제를 생성합니다.
 
+앱의 WireFrame은 아래의 Figma 링크를 통해 확인할 수 있습니다.
+https://www.figma.com/file/AbqcqlDPJR29MdARoA0r67/Untitled?node-id=0%3A1&t=nWvCFyYcAgVCQkS4-1
+
+<img width="100" alt="image" src="https://github.com/chlwnsxo00/fill-in-blank/assets/31373739/51f52fd7-474a-4489-b0b4-8b04b4b37993">
+
 ## 1. 각 Activiry 설명
 
 ### (가) SplashActivity 
