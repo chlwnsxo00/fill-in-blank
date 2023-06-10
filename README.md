@@ -19,6 +19,7 @@ PlayOCRActivity는 OCR을 통해 이미지에서 text를 추출하는 과정을 
 
 ### (마) TextHighLightActivity
 TextHighLightActivity은 OCR로 이미지에서 획득한 text를 통해 문제를 생성하는 Activity입니다.
+
 ---
 
 ## 2. 앱 기능을 구현하기 위해 사용된 기능 설명
