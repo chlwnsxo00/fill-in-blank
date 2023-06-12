@@ -1,32 +1,34 @@
 package com.example.blank
 
+import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.BackgroundColorSpan
+import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import com.example.blank.R
 
 class TextHighlightActivity : AppCompatActivity() {
 
-    private val textView: TextView by lazy {
-        findViewById(R.id.textView)
-    }
+    private lateinit var textView: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_text_highlight)
 
-
-//        val textView: TextView = findViewById(R.id.textView3)
+        textView = findViewById(R.id.textView)
         val intent = intent
         val ocrText = intent.getStringExtra("text")
 
         textView.text = ocrText
         println(ocrText)
-   //     textView.text = "Hello World!"
+        //     textView.text = "Hello World!"
 
         textView.setOnLongClickListener {
+            textView.requestFocus()
             val start = textView.selectionStart
             val end = textView.selectionEnd
 
@@ -45,20 +47,22 @@ class TextHighlightActivity : AppCompatActivity() {
                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                 )
                 textView.text = spannableString
+                println(start)
                 true
             } else {
                 false
             }
         }
+
+//        initMakeProblemButton()
     }
-}
 
 //    private fun initMakeProblemButton() {
-//        makeProblem.setOnClickListener {
-//            intent = Intent(this, TextHighlightActivity::class.java)
-//            intent.putExtra("text",OCRtext.text)
+//        val makeProblemButton: Button = findViewById(R.id.makeProblemButton)
+//        makeProblemButton.setOnClickListener {
+//            val intent = Intent(this, TextHighlightActivity::class.java)
+//            intent.putExtra("text", textView.text.toString())
 //            startActivity(intent)
 //        }
 //    }
-
-
+}
