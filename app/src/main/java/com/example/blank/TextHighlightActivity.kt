@@ -1,5 +1,6 @@
 package com.example.blank
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.Spannable
@@ -9,11 +10,17 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.MotionEvent
 import android.view.View
+import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.w3c.dom.Text
 import java.util.*
 
 class TextHighlightActivity : AppCompatActivity() {
@@ -31,12 +38,10 @@ class TextHighlightActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_text_highlight)
-//        val intent = intent
-//        val ocrText = intent.getStringExtra("text")
-//
-//        textView.text = ocrText
+        val intent = intent
+        val ocrText = intent.getStringExtra("text")
 
-        textView.text = "The sun rises in the east and sets in the west."
+        textView.text = textSort(ocrText!!)
 
         initTextView()
         initMakeProblemButton()
@@ -99,8 +104,26 @@ class TextHighlightActivity : AppCompatActivity() {
         makeButton.setOnClickListener {
             intent = Intent(this, InnerIndexActivity::class.java)
             intent.putExtra("text",textView.text)
-            startActivity(intent)
+            val input = EditText(this)
+            var problemName : String
+            AlertDialog.Builder(this)
+                .setTitle("새로운 문제 추가하기")
+                .setMessage("새로운 문제의 이름을 적어주세요")
+                .setView(input)
+                .setPositiveButton("생성하기")  { _, _ ->
+                    problemName = input.text.toString()
+                    intent.putExtra("problemName",problemName)
+                    startActivity(intent)
+                }
+                .setNegativeButton("취소하기") { _, _ -> }
+                .create()
+                .show()
         }
+    }
+
+    private fun textSort(text:String) : String{
+        val words = text.split("\\s+".toRegex()) // 공백 또는 개행문자를 기준으로 단어 분리
+        return words.joinToString(" ") // 각 단어를 띄어쓰기 하나로 구분하여 합침
     }
 }
 

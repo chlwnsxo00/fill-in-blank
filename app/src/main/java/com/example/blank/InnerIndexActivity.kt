@@ -1,17 +1,31 @@
 package com.example.blank
 
+import InnerIndexItemAdapter
+import MainIndexItemAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
+import com.example.data.db.dao.AppDatabase
+import com.example.data.db.entity.InnerIndexEntity
+import com.example.data.db.entity.MainIndexEntity
 
 
 class InnerIndexActivity : AppCompatActivity() {
 
+    private var itemList = ArrayList<InnerIndexEntity>()
+    private lateinit var db: AppDatabase
+    private lateinit var adapter: InnerIndexItemAdapter
+    private val rv : RecyclerView by lazy {
+        findViewById(R.id.inner_index_rv)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inner_index)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -33,4 +47,6 @@ class InnerIndexActivity : AppCompatActivity() {
         }
     }
     //이후 문제 누르면 문제 푸는 Activity로 넘어감
+
+
 }
