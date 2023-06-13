@@ -1,5 +1,6 @@
 package com.example.blank
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
@@ -10,6 +11,9 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import java.util.*
 
 class TextHighlightActivity : AppCompatActivity() {
@@ -17,16 +21,25 @@ class TextHighlightActivity : AppCompatActivity() {
     private val textView: TextView by lazy {
         findViewById(R.id.textView)
     }
+    private val makeButton: AppCompatButton by lazy {
+        findViewById(R.id.btn_save_Blank)
+    }
 
     private val answerWordQueue: Queue<String> = LinkedList()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_text_highlight)
+//        val intent = intent
+//        val ocrText = intent.getStringExtra("text")
+//
+//        textView.text = ocrText
 
         textView.text = "The sun rises in the east and sets in the west."
 
         initTextView()
+        initMakeProblemButton()
     }
 
     private fun initTextView() {
@@ -82,19 +95,17 @@ class TextHighlightActivity : AppCompatActivity() {
             return super.onTouchEvent(widget, buffer, event)
         }
     }
+    private fun initMakeProblemButton() {
+        makeButton.setOnClickListener {
+            intent = Intent(this, InnerIndexActivity::class.java)
+            intent.putExtra("text",textView.text)
+            startActivity(intent)
+        }
+    }
 }
 
 
-//        val intent = intent
-//        val ocrText = intent.getStringExtra("text")
-//
-//        textView.text = ocrText
 
-//    private fun initMakeProblemButton() {
-//        makeProblem.setOnClickListener {
-//            intent = Intent(this, com.example.blank.TextHighlightActivity::class.java)
-//            intent.putExtra("text",OCRtext.text)
-//            startActivity(intent)
-//        }
-//    }
+
+
 
