@@ -10,17 +10,19 @@ https://www.figma.com/file/AbqcqlDPJR29MdARoA0r67/Untitled?node-id=0%3A1&t=nWvCF
 
 ## 1. 각 Activiry 설명
 
+<img width="873" alt="image" src="https://github.com/chlwnsxo00/fill-in-blank/assets/31373739/f42c6d32-6674-4e89-92b2-18d4300b6ba0">
+
 ### (가) SplashActivity 
 Splash screen은 이미지나 로고, 현재 버전의 소프트웨어를 포함한 그래픽 요소를 보여주는 화면으로, 보통 게임이나 프로그램이 실행되고 있을 때 나오는 화면입니다.
 해당 액티비티에서 Blank 앱의 로고를 1초간 보여주고 MainActivity로 이동합니다.
 
-![SplashActivity](https://github.com/chlwnsxo00/fill-in-blank/assets/31373739/25616d2e-ab08-405b-ba6b-1cbacdcd6405) | <img width= "40%">
+![Blank_SplashActivity](https://github.com/chlwnsxo00/fill-in-blank/assets/31373739/a0545b80-2f39-4325-9306-55732307d0bb)
+
 
 ### (나) MainActivity
 MainActivity는 문제의 유형을 나눌 수 있는 폴더를 생성하고 각 폴더는 Room을 통해 local db로 저장됩니다. 또한 RecyclerView를 통해 스크롤을 통해 생성된 폴더를 확인할 수 있으며, 각 폴더 item은 문제 생성, 삭제, 문제 풀기의 기능을 가지고 있습니다. 우측 상단의 "지문 n개>"의 text를 클릭하면 InnerIndexActivity로 이동합니다. 우측 하단의 "삭제" text를 클릭하면 해당 폴더가 삭제됩니다.
 
-![MainIndexActivity](https://github.com/chlwnsxo00/fill-in-blank/assets/31373739/8f320208-e21b-48a8-b47f-34da7db8d2f4)| <img width= "40%">
-
+![Blank_MainActivity](https://github.com/chlwnsxo00/fill-in-blank/assets/31373739/a36babd6-8750-4afa-a25e-fa01e5cb995a)
 
 ### (다) InnerIndexActivity
 InnerIndexActivity는 폴더 안의 문제들을 확인할 수 있는 Activity입니다. 해당 Activity의 상단 메뉴바를 활용해 PlayOCRActivity로 이동할 수 있습니다.
@@ -28,11 +30,13 @@ InnerIndexActivity는 폴더 안의 문제들을 확인할 수 있는 Activity�
 ### (라) PlayOCRActivity
 PlayOCRActivity는 OCR을 통해 이미지에서 text를 추출하는 과정을 수행하는 Activity입니다. 상단 메뉴바를 활용해 갤러리에서 이미지 선택을 통해 OCR을 진행할 수 있습니다. OCR을 진행한 후 선택한 이미지와 OCR한 결과를 확인할 수 있으며, 하단의 "문제 만들기" 버튼을 클릭하면 TextHighLightActivity로 이동합니다.
 
-![PlayOCRActivity](https://github.com/chlwnsxo00/fill-in-blank/assets/31373739/73bdd815-6e78-4b5b-95d7-0e9e1957ba31)| <img width= "40%">
+![Uploading Blank_OCRActivity.gif…]()
+
 
 ### (마) TextHighLightActivity
 TextHighLightActivity은 OCR로 이미지에서 획득한 text를 통해 문제를 생성하는 Activity입니다.
 
+![Blank_MakeProblemActivity](https://github.com/chlwnsxo00/fill-in-blank/assets/31373739/dd2030ea-6ce1-4f9b-a3a2-121aea5c9407)
 ---
 
 ## 2. 앱 기능을 구현하기 위해 사용된 기능 설명
