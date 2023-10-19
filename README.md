@@ -30,7 +30,7 @@ InnerIndexActivity는 폴더 안의 문제들을 확인할 수 있는 Activity�
 ### (라) PlayOCRActivity
 PlayOCRActivity는 OCR을 통해 이미지에서 text를 추출하는 과정을 수행하는 Activity입니다. 상단 메뉴바를 활용해 갤러리에서 이미지 선택을 통해 OCR을 진행할 수 있습니다. OCR을 진행한 후 선택한 이미지와 OCR한 결과를 확인할 수 있으며, 하단의 "문제 만들기" 버튼을 클릭하면 TextHighLightActivity로 이동합니다.
 
-![Uploading Blank_OCRActivity.gif…]()
+![Blank_OCRActivity](https://github.com/chlwnsxo00/fill-in-blank/assets/31373739/03f71efe-4631-4d58-8f56-ba8f6e655424)
 
 
 ### (마) TextHighLightActivity
